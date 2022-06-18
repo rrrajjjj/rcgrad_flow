@@ -22,13 +22,12 @@ if __name__ == "__main__":
         "num_workers": 8,
         "random_state": 2021,
         "args.debug": False,
-        "modal":"vision",
         "model_url": "https://github.com/hohsiangwu/rethinking-visual-sound-localization/releases/download/v0.1.0-alpha/rc_grad.pt"
         
     }
     seed_everything(args["random_state"])
 
-    project_root = "../rcgrad" if args["modal"] == "vision" else "../rcgrad_flow"
+    project_root = "../rcgrad_flow" 
     os.makedirs(project_root, exist_ok=True)
     tensorboard_logger = TensorBoardLogger(save_dir="{}/logs/".format(project_root))
 
@@ -49,7 +48,7 @@ if __name__ == "__main__":
     )
     
     train_loader = DataLoader(
-    AudioVisualDatasetUrbansas(data_root="../../data/urbansas", split="train", duration=5, modal = args["modal"]),
+    AudioVisualDatasetUrbansas(data_root="../../data/urbansas", split="train", duration=5),
     num_workers=args["num_workers"],
     batch_size=args["batch_size"],
     pin_memory=True,
@@ -59,7 +58,7 @@ if __name__ == "__main__":
 
 
     valid_loader = DataLoader(
-        AudioVisualDatasetUrbansas(data_root="../../data/urbansas", split="valid", duration=5, modal = args["modal"]),
+        AudioVisualDatasetUrbansas(data_root="../../data/urbansas", split="valid", duration=5),
         num_workers=args["num_workers"],
         batch_size=args["batch_size"],
         pin_memory=True,

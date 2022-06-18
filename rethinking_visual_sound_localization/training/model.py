@@ -144,7 +144,6 @@ class RCGrad(LightningBase):
     ):
         super().__init__()
         self.args = args
-        self.modal = self.args["modal"]
         self.model_url = args["model_url"]
         self.image_encoder = resnet18(modal="vision", pretrained=True)
         self.flow_encoder = resnet18(modal="flow", pretrained = True)
@@ -180,8 +179,7 @@ class RCGrad(LightningBase):
                     if k.startswith("audio_encoder")
                 }
             )
-        # TODO: Define a flow encoder 
-        self.flow_encoder = None
+        
 
     def forward(self, audio, image, flow):
         audio_output = self.audio_encoder(audio.float())
