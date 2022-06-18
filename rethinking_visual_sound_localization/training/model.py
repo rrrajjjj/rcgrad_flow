@@ -85,7 +85,7 @@ class LightningBase(pl.LightningModule):
         return {"loss": loss, "log": {"train_loss": loss}}
 
     def validation_step(self, batch, batch_idx):
-        loss = self.step(batch, batch_idx)
+        loss, _ = self.step(batch, batch_idx)
         return {"val_loss": loss}
 
     def validation_epoch_end(self, outputs):
