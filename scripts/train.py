@@ -35,8 +35,8 @@ if __name__ == "__main__":
     prev_versions = os.listdir("{}/models/".format(project_root))
     if len(prev_versions)>0:
         last_version = max([int(i[7:]) for i in prev_versions])
-        
-    dirpath = "{}/models/{}".format(project_root, last_version+1)
+
+    dirpath = "{}/models/version{}".format(project_root, last_version+1)
     filename = "{epoch}-{val_loss:.4f}"
 
     trainer = Trainer(
