@@ -1,7 +1,7 @@
 import numpy as np
 import pytorch_lightning as pl
 import torch
-from torch import cosine_similarity, nn
+from torch import nn
 
 from ..modules.resnet import BasicBlock
 from ..modules.resnet import resnet18
